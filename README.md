@@ -18,7 +18,7 @@ The standard usage looks like this:
 `@Gunsmith MyGamertag xbox hunter primary`
  
 with a response looking like (active nodes in bold): 
-![image]() 
+![image](https://user-images.githubusercontent.com/24279336/47389538-097e6a00-d6e3-11e8-8285-260d135801cb.png) 
  
 ### Advanced Options
 If you set the `default_platform` setting, you can omit it in your request
