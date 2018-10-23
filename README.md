@@ -56,16 +56,16 @@ Deploy to heroku, `cd` into the newly created folder then follow these steps:
 [Get a Bungie API key](https://www.bungie.net/en/Application) to allow Gunsmith to query the Bungie API.  
  
 Set the following [configuration variables](https://devcenter.heroku.com/articles/config-vars):  
-`HUBOT_SLACK_TOKEN=your-slack-token-here`  
-`BUNGIE_API_KEY=your-bungie-key-here`. 
+- `HUBOT_SLACK_TOKEN=your-slack-token-here`  
+- `BUNGIE_API_KEY=your-bungie-key-here`. 
  
-You will notice that there are some variables that are already set:  
-`HEROKU_URL` set automatically when you created your Heroku dyno.  
-`DATABASE_URL` set automatically when PostgreSQL was added to your dyno.
-
-Leave them in place.
+There should also be two automatically created configuration variables, they should be left alone.
+- `HEROKU_URL` The URL to your Heroku dyno, used for keeping the Gunsmith awake.  
+- `DATABASE_URL` The URL to your PostgreSQL database, used for connecting to the database.
  
 Note: Free Heroku dynos are limited to 550 hours per month, meaning that eventually your Gunsmith bot will suspended before the month is out. You may, if you so desire, get an additional 450 dyno hours by adding a valid credit card to Heroku.
+
+Once the Gunsmith is online and connected to your Slack workspace, issue a `manifest` command to it via a direct message to kick off the initial Manifest data import.
  
 ### Configuring the Gunsmith
  
