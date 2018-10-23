@@ -48,7 +48,7 @@ Clone the repo locally:
 `git clone git@github.com:xxbiohazrdxx/gunsmith.git`
  
 Deploy to heroku, `cd` into the newly created folder then follow these steps:
-- `heroku create my-new-slackbot`
+- `heroku create`
 - `heroku addons:create heroku-postgresql:hobby-dev`
 - `git push heroku master`
  
@@ -74,10 +74,15 @@ Certain Gunsmith settings can be changed directly through Slack by sending a dir
  
 Valid settings are:  
 `show_armor` - Sets whether the Gunsmith will respond and display armor, in addition to weapons. Accepts values `true` or `false`. Defaults to `true`.  
+
 `allow_admin_config` - Sets whether the Gunsmith will allow anyone who is a Slack admit to access the configure commands. Accepts values `true` or `false`. Defaults to `true`.  
+
 `owner_id` - Sets the owner of the Gunsmith (That's you!). The owner is always able to configure the bot, even if `allow_admin_config` is set to `false`. Accepts any string as a value. Defaults to empty.  
+
 `default_platform` - Sets the default gaming platform for your Slack. Useful if all of most users are on one platform. Accepts `xbox`, `playstation`, or `pc` as a value. Defaults to empty.  
+
 `longform_output` - Sets whether the Gunsmith will output all useful weapon perks (`true`), or only activated weapon perks (`false`). Accepts values `true` or `false`. Defaults to `true`.  
+
 `language` - Sets the Gunsmith language. Destiny 2 is localized for multiple languages, and as such the Gunsmith is capable of outputting items in any supported Langauge. Accepts values:
 - `en` (English)
 - `fr` (French)
