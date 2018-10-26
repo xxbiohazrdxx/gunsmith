@@ -77,7 +77,7 @@ Valid settings are:
 
 `allow_admin_config` - Sets whether the Gunsmith will allow anyone who is a Slack admin to access the configure commands. Accepts values `true` or `false`. Defaults to `true`.  
 
-`owner_id` - Sets the owner of the Gunsmith (That's you!). The owner is always able to configure the bot, even if `allow_admin_config` is set to `false`. Accepts any string as a value. Defaults to empty.  
+`owner_id` - Sets the owner of the Gunsmith (That's you!). The owner is always able to configure the bot, even if `allow_admin_config` is set to `false`. This can be found in the Slack application or web app by viewing a user's profile and clicking/tapping the `More actions` button. You should see `Copy member ID` and an alphanumeric string that uniquely represents the user. Accepts any string as a value. Defaults to empty.  
 
 `default_platform` - Sets the default gaming platform for your Slack workspace. Useful if all of most users are on one platform. Accepts `xbox`, `playstation`, or `pc` as a value. Defaults to empty.  
 
