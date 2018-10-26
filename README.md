@@ -21,7 +21,7 @@ with a response looking like (active nodes in bold):
 ![image](https://user-images.githubusercontent.com/24279336/47389538-097e6a00-d6e3-11e8-8285-260d135801cb.png) 
  
 ### Advanced Options
-If you set the `default_platform` setting, you can omit it in your request.  
+If `default_platform` is set, you can omit your gaming platform from the request.  
 `@Gunsmith MyGamertag hunter primary`
  
 If your Slack profile's **first name** (not username) matches your gaming platform username, you can omit it as well.  
@@ -36,7 +36,7 @@ Combining these options, you can very easily activate the bot with as little as 
 Note that inputs override defaults. So if `default_platform` is set to `xbox` and a request contains `pc` in the input, the Gunsmith will check the `pc` platform.  
 This also applies to platform usernames.
 
-### Setting up the bot in your own Slack
+### Setting up the bot in your own Slack workspace
  
 Note: Gunsmith needs a PostgreSQL database to store localized info from the Destiny 2 Manifest. The Heroku free tier of PostgreSQL is limited to 10,000 rows, of which Gunsmith uses around 8,000.  
 This means that if you already have other Heroku applications using PostgreSQL, you may run out of space in your free database.
@@ -75,11 +75,11 @@ Certain Gunsmith settings can be changed directly through Slack by sending a dir
 Valid settings are:  
 `show_armor` - Sets whether the Gunsmith will respond and display armor, in addition to weapons. Accepts values `true` or `false`. Defaults to `true`.  
 
-`allow_admin_config` - Sets whether the Gunsmith will allow anyone who is a Slack admit to access the configure commands. Accepts values `true` or `false`. Defaults to `true`.  
+`allow_admin_config` - Sets whether the Gunsmith will allow anyone who is a Slack admin to access the configure commands. Accepts values `true` or `false`. Defaults to `true`.  
 
 `owner_id` - Sets the owner of the Gunsmith (That's you!). The owner is always able to configure the bot, even if `allow_admin_config` is set to `false`. Accepts any string as a value. Defaults to empty.  
 
-`default_platform` - Sets the default gaming platform for your Slack. Useful if all of most users are on one platform. Accepts `xbox`, `playstation`, or `pc` as a value. Defaults to empty.  
+`default_platform` - Sets the default gaming platform for your Slack workspace. Useful if all of most users are on one platform. Accepts `xbox`, `playstation`, or `pc` as a value. Defaults to empty.  
 
 `longform_output` - Sets whether the Gunsmith will output all useful weapon perks (`true`), or only activated weapon perks (`false`). Accepts values `true` or `false`. Defaults to `true`.  
 
