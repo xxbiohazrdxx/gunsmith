@@ -64,8 +64,6 @@ There should also be two automatically created configuration variables, they sho
 - `DATABASE_URL` The URL to your PostgreSQL database, used for connecting to the database.
  
 Note: Free Heroku dynos are limited to 550 hours per month, meaning that eventually your Gunsmith bot will suspended before the month is out. You may, if you so desire, get an additional 450 dyno hours by adding a valid credit card to Heroku.
-
-Once the Gunsmith is online and connected to your Slack workspace, issue a `manifest` command to it via a direct message to kick off the initial Manifest data import.
  
 ### Configuring the Gunsmith
  

@@ -119,6 +119,8 @@ class GunsmithDatabase
 			console.log("DB : Schema check complete")
 			@loadSettingsFromDB().then =>
 				console.log("DB : Initialization complete")
+				@loadManifestIntoDB().then =>
+					console.log("DB : Startup Manifest check complete")
 
 	loadSettingsFromDB: () ->
 		console.log("DB : Attempting to load settings from database")
@@ -148,7 +150,7 @@ class GunsmithDatabase
 			manifestHash = manifestURL.match(/world_sql_content_(.*)\.content/i)
 
 			console.log("DB : Checking saved Manifest hash against latest from API")
-			if @settings.manifest_hash is manifestHash
+			if @settings.manifest_hash is manifestHash[1]
 				console.log("DB : API Manifest hash matches DB manifest hash. Manifest is not out of date. Exiting")
 				return
 
@@ -236,8 +238,8 @@ class GunsmithDatabase
 								resolve()
 
 				Promise.all([manifestPromise, classLocalizationPromise, itemStatLocalizationPromise, weaponDamageTypeLocalizationPromise]).then =>
-					console.log("DB : Manfiest loaded into database")
-					#@saveSettingToDB("MANIFEST_HASH", manifestHash).then ->
+					@saveSettingToDB("manifest_hash", manifestHash[1]).then ->
+						console.log("DB : Manifest loaded into database")
 		.catch (error) ->
 			console.log("DB : Manifest error")
 			console.log(error)
