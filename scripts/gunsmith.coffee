@@ -141,12 +141,12 @@ module.exports = (robot) ->
 			# Loop through the tokenized input, trying to find if any of the inputs is an item slot
 			for currentArgument, index in input
 				# Check to see if the current token is a valid item type
-				if currentArgument of constants.ITEM_HASHES
+				if currentArgument of constants.ITEM_HASHES[gunsmithDB.settings.language]
 					# If the current token is in the array, check to make sure a item has not already been specified
 					if selectedSlotHash is null
 						# Set the item slot and the index of the matched token
 						removeIndex = index
-						selectedSlotHash = constants.ITEM_HASHES[currentArgument]
+						selectedSlotHash = constants.ITEM_HASHES[gunsmithDB.settings.language][currentArgument]
 					else
 						# The current token is in the array, but the item slot is already set indicating
 						# that the user put two item names in the input
