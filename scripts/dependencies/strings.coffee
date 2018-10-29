@@ -20,7 +20,7 @@ module.exports =
 		HELP_TEXT: "To show off your items, @ the bot with your username, class, network, and item slot, separated by spaces.\nIf no class is specified, the bot will always look at the most recently played class.\nIf you've set up your slack profile so that your *first name* matches your username, you can omit it.\nIf your gamertag only exists on one network, that can be omitted as well."
 	
 	"fr":
-		CONFIG_COMMAND_ERROR: "La commande \"configure\" ne prend en charge que la modification d'un paramètre à la fois sous la forme \"<nom du paramètre> <valeur du paramètre>\" ou la lecture d'un paramètre unique sous la forme de "" nom du paramètre>\"."
+		CONFIG_COMMAND_ERROR: "La commande \"configure\" ne prend en charge que la modification d'un paramètre à la fois sous la forme \"<nom du paramètre> <valeur du paramètre>\" ou la lecture d'un paramètre unique sous la forme \"<nom du paramètre>\"."
 		CONFIG_ACCESS_ERROR: "Vous n'êtes pas autorisé à utiliser la commande \"configure\""
 		CONFIG_KEY_SAVED: "Paramètre enregistré avec succès."
 		CONFIG_INVALID_KEY: "Le nom de variable fourni n'est pas valide."
