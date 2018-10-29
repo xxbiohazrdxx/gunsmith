@@ -167,6 +167,12 @@ module.exports = (robot) ->
 			console.log("Log : Item slot check complete (Chosen: #{selectedSlotHash})")
 			console.log("Log : Input remaining: #{input.toString()}")
 
+			# Check if the selected item is armor and if show_armor is enabled
+			if gunsmithDB.settings.show_armor is "false" and selectedSlotHash in constants.ARMOR_HASHES
+				console.log("Log : Item slot is armor and armor display is disabled")
+				robot.messageRoom("#{res.message.user.id}", strings[gunsmithDB.settings.language].ITEM_DISPLAY_DISABLED_ERROR)
+				return
+
 			# Check to make sure there are still tokens
 			removeIndex = -1
 			if input.length != 0
@@ -216,7 +222,7 @@ module.exports = (robot) ->
 
 				# Loop through the tokenized input, trying to find if any of the inputs is a class
 				for currentArgument, index in input
-					# Check to see if the current token is in the item slot array
+					# Check to see if the current token is in the localized class names array
 					if currentArgument of localizedClassNames
 						# If the current token is in the array, check to make sure a class has not already been specified
 						if selectedClassHash is null
