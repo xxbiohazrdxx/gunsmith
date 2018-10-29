@@ -95,6 +95,7 @@ class ItemFormatter
 				resolve(formattedItem)
 
 	createItemAttachment: (createdItem) ->
+		console.log("IF : Creating long form attachment")
 		# Build display name by adding element for non-kinetic/non-armor
 		displayName = "#{createdItem.name}"
 		displayName += " [#{createdItem.damageName._j}]" if createdItem.damageName?
@@ -113,7 +114,7 @@ class ItemFormatter
 		# Filter out plug trees that are to be discarded, such as shaders
 		displayPlugs = createdItem.plugs.filter((object) -> not object[0].name._j.discard)
 
-		# Put collapsed and uncollapsed plugs into their own treesr
+		# Put collapsed and uncollapsed plugs into their own trees
 		collapsedPlugTrees = displayPlugs.filter((object) -> object[0].name._j.collapse)
 		uncollapsedPlugTrees = displayPlugs.filter((object) -> not object[0].name._j.collapse)
 
@@ -134,6 +135,68 @@ class ItemFormatter
 				currentPlugTreeText += (if currentPlugTreeText then ' | ' else '') + currentPlugName
 
 			plugText.push currentPlugTreeText
+		
+		attachment.text = plugText.join('\n')
+
+		console.log("IF : Attachemnt text created from item plugs")
+
+		footerStats = []
+		for currentStat in createdItem.stats
+			footerStats.push "#{currentStat.name._j}: #{currentStat.value}"
+		
+		attachment.footer = footerStats.join ', '
+
+		console.log("IF : Attachment footer created from item stats")
+
+		return attachment
+
+	createShortItemAttachment: (createdItem) ->
+		console.log("IF : Creating short form attachment")
+		# Build display name by adding element for non-kinetic/non-armor
+		displayName = "#{createdItem.name}"
+		displayName += " [#{createdItem.damageName._j}]" if createdItem.damageName?
+
+		attachment = {
+			title: displayName
+			fallback: createdItem.description
+			title_link: "https://db.destinytracker.com/d2/en/items/#{createdItem.hash}"
+			color: createdItem.damageColor
+			mrkdwn_in: ["text"]
+			thumb_url: "https://www.bungie.net#{createdItem.icon}"
+		}
+
+		console.log("IF : Basic attachment data created from item")
+		
+		# Filter out plug trees that are to be discarded, such as shaders
+		displayPlugs = createdItem.plugs.filter((object) -> not object[0].name._j.discard)
+
+		# Put collapsed and uncollapsed plugs into their own trees
+		collapsedPlugTrees = displayPlugs.filter((object) -> object[0].name._j.collapse)
+		uncollapsedPlugTrees = displayPlugs.filter((object) -> not object[0].name._j.collapse)
+
+		# Remove all plugs that aren't enabled
+		enabledPlugs = uncollapsedPlugTrees.map((object) ->
+			object = object.filter((subObject) ->
+				subObject.enabled)
+			return object[0]
+		)
+
+		plugText = []
+
+		# Build the text for the collapsed plugs
+		currentPlugTreeText = ""
+		for currentPlugTree in collapsedPlugTrees
+			currentPlugTreeText += (if currentPlugTreeText then ' | ' else '') + "*#{currentPlugTree[0].name._j.name}*"
+
+		plugText.push currentPlugTreeText
+
+		# Build the text for the enabled plugs
+		enabledPlugText = ""
+		for currentPlug in enabledPlugs
+			currentPlugName = "*#{currentPlug.name._j.name}*"
+			enabledPlugText += (if enabledPlugText then ' | ' else '') + currentPlugName
+
+		plugText.push enabledPlugText
 		
 		attachment.text = plugText.join('\n')
 
