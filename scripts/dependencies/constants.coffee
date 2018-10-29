@@ -24,6 +24,9 @@ module.exports =
 		'battlenet'		: 4
 		'battle.net'	: 4
 
+	# Lookup for armor slot hashes
+	ARMOR_HASHES: [4023194814, 3448274439, 14239492, 3551918588, 20886954, 1585787867]
+
 	# Lookup for item slot hashes
 	ITEM_HASHES:
 		"en":
