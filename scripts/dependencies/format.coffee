@@ -20,26 +20,30 @@ class ItemFormatter
 			formattedItem.icon = genericItem.displayProperties.icon
 
 			# Get generic/instanced item stats
-			# Object.assign combines the two objects, with the right object taking prescendece.
-			# In this case, that means that instance stats will overwrite generic stats
-			combinedStats = Object.assign(genericItem.stats.stats, instancedItem.stats.data.stats)
-
 			formattedItemStats = []
-			statHashes = Object.keys(combinedStats)
 
-			# Filter out junk stats
-			statHashes = statHashes.filter((object) ->
-				object not in constants.IGNORE_STATS)
+			# Some items, such as Ghosts and Class Items do not have stats
+			if instancedItem.stats.data?
+				# Object.assign combines the two objects, with the right object taking prescendece.
+				# In this case, that means that instance stats will overwrite generic stats
+				combinedStats = Object.assign(genericItem.stats.stats, instancedItem.stats.data.stats)
 
-			for currentStatHash in statHashes
-				currentStat = {}
-				currentStat.hash = currentStatHash
-				tempPromise = @database.getLocalizedStat(currentStatHash)
-				formattingPromises.push tempPromise
-				currentStat.name = tempPromise
-				currentStat.value = combinedStats[currentStatHash].value
+				
+				statHashes = Object.keys(combinedStats)
 
-				formattedItemStats.push currentStat
+				# Filter out junk stats
+				statHashes = statHashes.filter((object) ->
+					object not in constants.IGNORE_STATS)
+
+				for currentStatHash in statHashes
+					currentStat = {}
+					currentStat.hash = currentStatHash
+					tempPromise = @database.getLocalizedStat(currentStatHash)
+					formattingPromises.push tempPromise
+					currentStat.name = tempPromise
+					currentStat.value = combinedStats[currentStatHash].value
+
+					formattedItemStats.push currentStat
 
 			formattedItem.stats = formattedItemStats
 			
