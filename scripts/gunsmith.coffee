@@ -272,7 +272,13 @@ module.exports = (robot) ->
 						console.log("Log : Item created from generic and instance data")
 
 						slackAttachments = []
-						slackAttachments.push itemFormatter.createItemAttachment(createdItem)
+
+						# Create a longform or shortform attachment based on settings
+						if gunsmithDB.settings.longform_output is "true"
+							slackAttachments.push itemFormatter.createItemAttachment(createdItem)
+						else
+							slackAttachments.push itemFormatter.createShortItemAttachment(createdItem)
+
 						console.log("Log : Item formatted for output")
 
 						res.send {attachments: slackAttachments}
