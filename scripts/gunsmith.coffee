@@ -274,6 +274,11 @@ module.exports = (robot) ->
 				gunsmithDB.getLocalizedItem(instancedItem.item.data.itemHash).then (genericItem) ->
 					console.log("Log : Loaded generic item from database")
 
+					if genericItem.redacted
+						console.error('Error : Item is classified ')
+						robot.messageRoom("#{res.message.user.id}", strings[gunsmithDB.settings.language].ITEM_CLASSIFIED_ERROR)
+						return
+
 					itemFormatter = new ItemFormatter(gunsmithDB)
 					itemFormatter.createItem(genericItem, instancedItem).then (createdItem) ->
 						console.log("Log : Item created from generic and instance data")
