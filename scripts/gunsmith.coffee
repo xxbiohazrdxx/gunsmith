@@ -15,20 +15,21 @@ gunsmithDB.initializeDatabase()
 module.exports = (robot) ->
 	# Respond to requests to update the manifest
 	robot.respond /(manifest|update|update manifest)$/i, (res) ->
-		console.log("Log : Manual Manifest update requested")
+		if res.message.room[0] is 'D'
+			console.log("Log : Manual Manifest update requested")
 
-		console.log("Log : Verifying config DM is from an authorized user")
-		isConfigUser = gunsmithDB.settings.allow_admin_config is "true" and res.message.user.slack.is_admin
-		isOwner = res.message.user.id is gunsmithDB.settings.owner_id
-		if not isConfigUser and not isOwner
-			res.send strings[gunsmithDB.settings.language].CONFIG_ACCESS_ERROR
-			console.error("ERR : User is not authorized to update Manifest. Exiting")
-			return
+			console.log("Log : Verifying config DM is from an authorized user")
+			isConfigUser = gunsmithDB.settings.allow_admin_config is "true" and res.message.user.slack.is_admin
+			isOwner = res.message.user.id is gunsmithDB.settings.owner_id
+			if not isConfigUser and not isOwner
+				res.send strings[gunsmithDB.settings.language].CONFIG_ACCESS_ERROR
+				console.error("ERR : User is not authorized to update Manifest. Exiting")
+				return
 
-		res.send strings[gunsmithDB.settings.language].MANIFEST_UPDATE_STARTED
-		gunsmithDB.loadManifestIntoDB().then ->
-			console.log("Log : Manual Manifest update completed")
-			res.send strings[gunsmithDB.settings.language].MANIFEST_UPDATE_COMPLETE
+			res.send strings[gunsmithDB.settings.language].MANIFEST_UPDATE_STARTED
+			gunsmithDB.loadManifestIntoDB().then ->
+				console.log("Log : Manual Manifest update completed")
+				res.send strings[gunsmithDB.settings.language].MANIFEST_UPDATE_COMPLETE
 
 	# Respond to configuration changes
 	robot.respond /\bconfig(?:ure|)\b(?:\s|)(.*)/i, (res) ->
