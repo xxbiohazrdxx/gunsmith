@@ -7,7 +7,6 @@
   "dependencies": {
     "coffeescript": "^1.12.7",
     "dotenv": "^6.0.0",
-    "es6-promise": "^4.2.5",
     "hubot": "^3.1.1",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
@@ -23,7 +22,7 @@
     "knex": "^0.15.2",
     "pg": "^7.4.3",
     "promise": "^8.0.2",
-    "the-traveler": "^0.7.3"
+    "the-traveler": "^0.7.4"
   },
   "engines": {
     "node": "8.12.0"
