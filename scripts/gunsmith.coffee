@@ -253,13 +253,13 @@ module.exports = (robot) ->
 
 				console.log("Log : Username build complete (Built: #{playerUsername})")
 
-			# If the player username is empty, we will use the slack first name
+			# If the player username is empty, we will use the Slack profile real name
 			if not playerUsername?
-				console.log("Log : Username is blank, attempting to use Slack profile name")
-				playerUsername = res.message.user.slack.profile.first_name
+				console.log("Log : Username is blank, attempting to use Slack profile real name")
+				playerUsername = res.message.user.slack.profile.real_name
 
 				if not playerUsername?
-					console.error("Error: No username specified and Slack profile name is empty")
+					console.error("Error: No username specified and Slack profile real name is empty")
 					robot.messageRoom("#{res.message.user.id}", strings[gunsmithDB.settings.language].NO_USERNAME_PROVIDED_ERROR)
 					return
 
