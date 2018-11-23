@@ -24,7 +24,7 @@ with a response looking like (active nodes in bold):
 If `default_platform` is set, you can omit your gaming platform from the request.  
 `@Gunsmith MyGamertag hunter primary`
  
-If your Slack profile's **first name** (not username) matches your gaming platform username, you can omit it as well.  
+If your Slack profile's **real name** (not username) matches your gaming platform username, you can omit it as well.  
 `@Gunsmith xbox hunter primary`
  
 If you omit the character class, Gunsmith will default to the most recently played character.  
