@@ -180,13 +180,13 @@ module.exports = (robot) ->
 				# Determine the gaming platform specified
 				console.log('Log : Begin gaming platform check')
 
-				# Loop through the tokenized input, trying to find if any of the inputs is a class
+				# Loop through the tokenized input, trying to find if any of the inputs is a game platform
 				for currentArgument, index in input
-					# Check to see if the current token is in the item slot array
+					# Check to see if the current token is in the game platform array
 					if currentArgument of constants.GAME_PLATFORM
-						# If the current token is in the array, check to make sure a class has not already been specified
+						# If the current token is in the array, check to make sure a game platform has not already been specified
 						if selectedPlatform is null
-							# Set the class and the index of the matched token
+							# Set the game platform and the index of the matched token
 							removeIndex = index
 							selectedPlatform = constants.GAME_PLATFORM[currentArgument]
 						else
