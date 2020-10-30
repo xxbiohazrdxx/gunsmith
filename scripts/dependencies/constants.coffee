@@ -19,7 +19,9 @@ module.exports =
 		'ps4'			: 2
 		'playstation4'	: 2
 
-		'pc'			: 4
+		'pc'			: 3
+		'steam'			: 3
+
 		'bnet'			: 4
 		'battlenet'		: 4
 		'battle.net'	: 4
